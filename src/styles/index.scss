@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url(_common.scss);
+@font-face {
+  font-family: 'Inter';
+  src: url(../fonts/Inter-Variable.ttf) format('truetype');
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  margin: 0;
+}
+
+.bg-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-add1 {
+  background-image: url('/src/assets/images/address/Sajang-BBQ-web-Dia-diem-dia-diem.jpg');
+}
+.bg-add2 {
+  background-image: url('/src/assets/images/address/T1_1_1-scaled.jpg');
+}
+.bg-add3 {
+  background-image: url('/src/assets/images/address/TB_1-scaled.jpg');
+}
+.bg-add4 {
+  background-image: url('/src/assets/images/address/T2_1-scaled.jpg');
+}
+.bg-add5 {
+  background-image: url('/src/assets/images/address/T3_1-scaled.jpg');
+}
+.bg-add6 {
+  background-image: url('/src/assets/images/address/T5_1-scaled.jpg');
+}
+.address-container {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.5;
+  }
+}

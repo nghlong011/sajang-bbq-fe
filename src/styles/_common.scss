@@ -1,0 +1,149 @@
+// customize menu popup
+.ant-menu-submenu-popup {
+  .ant-menu-sub {
+    border-radius: 0;
+    font-size: 13px;
+
+    .ant-menu-item,
+    .ant-menu-submenu {
+      padding-inline: 20px;
+      color: #215e74;
+      font-weight: 500;
+      border-bottom: 1px solid #969696;
+      border-radius: 0;
+      margin: 0;
+      width: 100%;
+
+      &:hover,
+      &.ant-menu-item-selected {
+        background-color: #77c373 !important;
+        color: #ffffff !important;
+      }
+
+      &.ant-menu-submenu {
+        padding-right: 0;
+
+        .ant-menu-submenu-title {
+          margin: 0;
+          padding: 0;
+
+          &:hover {
+            background-color: transparent;
+          }
+        }
+
+        .ant-menu-submenu-arrow {
+          position: absolute;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  &.ant-menu-submenu-placement-rightTop {
+    padding-left: 12px !important;
+  }
+}
+
+// custom carousel
+.styled-carousel {
+  .slick-dots {
+    margin-bottom: -35px;
+
+    li {
+      display: flex;
+      justify-content: center;
+
+      button {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: #525252;
+      }
+
+      &.slick-active button {
+        width: 6px;
+        height: 6px;
+        background: #000000;
+      }
+    }
+  }
+}
+
+// custom select language
+.language-select {
+  width: 60px;
+  height: 25px;
+
+  .ant-select-selector {
+    border: 1px solid #ffffff !important;
+    background-color: transparent !important;
+    border-radius: 20px;
+
+    .ant-select-selection-item {
+      color: #ffffff !important;
+    }
+  }
+}
+
+// custom tabs
+.styled-tabs {
+  .ant-tabs-tab {
+    font-size: 18px;
+    font-weight: 400;
+    color: #5c5c5c;
+    user-select: none;
+
+    &.ant-tabs-tab-active {
+      .ant-tabs-tab-btn {
+        color: #529949 !important;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+// custom pagination
+.ant-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 30px;
+
+  .ant-pagination-item,
+  .ant-pagination-prev,
+  .ant-pagination-next {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+  }
+}
+
+// input label
+.ant-form-item-label {
+  padding: 0 !important;
+}
+
+// image-list
+.image-list {
+  .ant-image {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// ckeditor
+.ck-editor__editable_inline {
+  height: 350px;
+}
+
+// paypal
+.paypal-button-container {
+  iframe {
+    height: 45px !important;
+    border-radius: 5px !important;
+  }
+}
