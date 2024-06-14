@@ -1,5 +1,5 @@
 import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import { Avatar, Button, Layout, Menu, theme } from 'antd';
+import { Avatar, Button, Layout, Menu, theme, Image } from 'antd';
 import { URL } from 'constants/url';
 import { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
@@ -48,7 +48,7 @@ const UserLayout = (props: IProps) => {
           >
             <div className="p-[5px]">
               <Link to={URL.home}>
-                <div className="bg-image bg-home-concept w-full aspect-square rounded-md" />
+                <Image src="https://www.tlu.edu.vn/Portals/0/2014/Logo-WRU.png" preview={false} />
               </Link>
             </div>
             <Menu mode="inline" defaultSelectedKeys={['infomation']} items={menu} />

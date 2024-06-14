@@ -8,6 +8,7 @@ import Branch from 'app/page/Admin/Branch';
 import Dashboard from 'app/page/Admin/Dashboard';
 import DishMangament from 'app/page/Admin/Dish';
 import GalleryMangament from 'app/page/Admin/Gallery';
+import ReportMangament from 'app/page/Admin/Report';
 import User from 'app/page/Admin/User';
 import BlogDetails from 'app/page/BlogDetails';
 import NotFound from 'app/page/NotFound';
@@ -120,6 +121,11 @@ const adminItems: ItemType[] = [
   {
     key: URL.admin.dish,
     components: <DishMangament />,
+    layout: ADMIN_LAYOUT,
+  },
+  {
+    key: URL.admin.report,
+    components: <ReportMangament />,
     layout: ADMIN_LAYOUT,
   },
 ];

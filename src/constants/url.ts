@@ -21,5 +21,6 @@ export const URL = {
     blog: '/admin/blog',
     dish: '/admin/dish',
     gallery: '/admin/gallery',
+    report: '/admin/report',
   },
 };

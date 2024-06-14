@@ -55,9 +55,6 @@ function Login(props: Readonly<IProps>) {
           />
         </Form.Item>
         <Form.Item>
-          <span className="text-link select-none cursor-pointer float-right">Quên mật khẩu</span>
-        </Form.Item>
-        <Form.Item>
           <Button type="primary" size="large" htmlType="submit" className="w-full mb-1">
             Đăng nhập
           </Button>

@@ -1,5 +1,17 @@
-import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, Button, Layout, Menu, theme } from 'antd';
+import {
+  ApartmentOutlined,
+  BellOutlined,
+  BookOutlined,
+  CalendarOutlined,
+  HomeOutlined,
+  LogoutOutlined,
+  MailOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  ProductOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import { Avatar, Button, Layout, Menu, theme, Image } from 'antd';
 import { URL } from 'constants/url';
 import { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
@@ -17,30 +29,42 @@ const menu = [
   {
     key: 'admin',
     label: <Link to={URL.admin.dashboard}>Dashboard</Link>,
+    icon: <HomeOutlined />,
   },
   {
     key: 'user',
     label: <Link to={URL.admin.user}>Người dùng</Link>,
+    icon: <UserOutlined />,
   },
   {
     key: 'branch',
     label: <Link to={URL.admin.branch}>Chi nhánh</Link>,
+    icon: <ApartmentOutlined />,
   },
   {
     key: 'booking',
     label: <Link to={URL.admin.booking}>Đơn đặt bàn</Link>,
+    icon: <CalendarOutlined />,
   },
   {
     key: 'blog',
     label: <Link to={URL.admin.blog}>Bài đăng</Link>,
+    icon: <BookOutlined />,
   },
   {
     key: 'gallery',
     label: <Link to={URL.admin.gallery}>Thư viện</Link>,
+    icon: <ProductOutlined />,
   },
   {
     key: 'dish',
     label: <Link to={URL.admin.dish}>Món ăn</Link>,
+    icon: <BellOutlined />,
+  },
+  {
+    key: 'report',
+    label: <Link to={URL.admin.report}>Phản ánh</Link>,
+    icon: <MailOutlined />,
   },
 ];
 
@@ -69,7 +93,7 @@ const AdminLayout = (props: IProps) => {
           >
             <div className="p-[5px]">
               <Link to={URL.home}>
-                <div className="bg-image bg-home-concept w-full aspect-square rounded-md" />
+                <Image src="https://www.tlu.edu.vn/Portals/0/2014/Logo-WRU.png" preview={false} />
               </Link>
             </div>
             <Menu mode="inline" defaultSelectedKeys={[getPageName()]} items={menu} />
