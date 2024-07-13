@@ -54,7 +54,7 @@ const BookingMangament = () => {
   const [data, setData] = useState<DynamicKeyObject>({});
   const [isOpenDetailBooking, setIsOpenDetailBooking] = useState<boolean>(false);
   const [clickedRow, setClickedRow] = useState<DynamicKeyObject>({});
-
+  console.log(data.booking);
   const handleClickRow = (record: any) => {
     setClickedRow(record);
     setIsOpenDetailBooking(true);
