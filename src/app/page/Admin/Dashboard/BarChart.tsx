@@ -78,14 +78,13 @@ const BarChart = () => {
       revenues.forEach((revenue) => {
         const revenueDate = dayjs(revenue.date, 'DD/MM/YYYY');
         total += revenue.revenue;
-
+        console.log('Start of Week:', startOfWeek.format());
+        console.log('Start of Last Week:', startOfLastWeek.format());
+        console.log('Revenue Date:', revenueDate.format());
         if (revenueDate.isBetween(startOfWeek, startOfWeek.add(6, 'day'), null, '[]')) {
           const dayOfWeek = (revenueDate.day() + 6) % 7; // Adjust to make Monday the first day
           thisWeekRevenue[dayOfWeek] = revenue.revenue;
           thisWeekSum += revenue.revenue;
-          console.log('Start of Week:', startOfWeek.format());
-          console.log('Start of Last Week:', startOfLastWeek.format());
-          console.log('Revenue Date:', revenueDate.format());
         } else if (revenueDate.isBetween(startOfLastWeek, startOfLastWeek.add(6, 'day'), null, '[]')) {
           const dayOfWeek = (revenueDate.day() + 6) % 7; // Adjust to make Monday the first day
           lastWeekRevenue[dayOfWeek] = revenue.revenue;
