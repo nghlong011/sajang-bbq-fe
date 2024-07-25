@@ -19,6 +19,17 @@ const columns: TableProps<any>['columns'] = [
     key: 'name',
   },
   {
+    title: 'Giá món ăn',
+    dataIndex: 'price',
+    key: 'price',
+  },
+  {
+    title: 'Vai trò',
+    dataIndex: 'role',
+    key: 'role',
+    render: (role) => (role == '1' ? 'Món chính' : 'Món phụ'),
+  },
+  {
     title: 'Hành động',
     key: 'action',
     render: (_, record) => <TableAction row={record} apiPath={modalFormConfig.dish.apiPath} />,

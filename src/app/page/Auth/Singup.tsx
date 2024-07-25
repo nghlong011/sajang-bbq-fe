@@ -1,4 +1,4 @@
-import { LockOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons';
+import { ArrowRightOutlined, LockOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row, message } from 'antd';
 import { useAppDispatch } from 'store';
 import { actionUpdateUserLogin } from 'store/authSlice';
@@ -22,7 +22,7 @@ function Singup(props: Readonly<IProps>) {
   };
 
   return (
-    <div>
+    <div className="bg-white px-[40px] rounded-md">
       <div>
         <h1 className="text-center mb-5 uppercase">Đăng ký</h1>
         <Form
@@ -126,13 +126,12 @@ function Singup(props: Readonly<IProps>) {
             />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" size="large" htmlType="submit" className="w-full mb-1">
+            <Button type="primary" size="large" htmlType="submit" className="w-full mb-1 login-button">
               Đăng ký
             </Button>
-            Hoặc{' '}
-            <span className="text-link select-none cursor-pointer" onClick={onLogin}>
-              đăng nhập ngay!
-            </span>
+            <div className="select-none cursor-pointer pt-[136px] text-center text-black" onClick={onLogin}>
+              Đăng nhập <ArrowRightOutlined />
+            </div>
           </Form.Item>
         </Form>
       </div>

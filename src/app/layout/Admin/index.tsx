@@ -28,7 +28,7 @@ interface IProps {
 const menu = [
   {
     key: 'admin',
-    label: <Link to={URL.admin.dashboard}>Dashboard</Link>,
+    label: <Link to={URL.admin.dashboard}>Thống kê</Link>,
     icon: <HomeOutlined />,
   },
   {

@@ -1,11 +1,13 @@
 import type { TableProps } from 'antd';
-import { Button, Table } from 'antd';
-import AppPagination from 'app/components/common/AppPagination';
-import TableAction from 'app/components/custom/TableAction';
-import { modalFormConfig } from 'constants/modalForm';
-import { DynamicKeyObject } from 'model';
-import { useState } from 'react';
-import { modalForm } from 'utils/app';
+import { Table } from 'antd';
+
+interface IProps {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  content: string;
+}
 
 const columns: TableProps<any>['columns'] = [
   {
@@ -28,30 +30,40 @@ const columns: TableProps<any>['columns'] = [
     dataIndex: 'content',
     key: 'content',
   },
-  {
-    title: 'Hành động',
-    key: 'action',
-    render: (_, record: DynamicKeyObject) => (
-      <TableAction
-        row={{ ...record, utils: record.utils.map((util: DynamicKeyObject) => util.UtilityId) }}
-        apiPath={modalFormConfig.branch.apiPath}
-      />
-    ),
-  },
 ];
 
 const ReportMangament = () => {
-  const [data, setData] = useState<DynamicKeyObject>({});
-
-  return (
-    <>
-      <Button className="mb-5" onClick={() => modalForm.open(modalFormConfig.branch)}>
-        Thêm mới
-      </Button>
-      <Table columns={columns} dataSource={data.branch} pagination={false} />
-      <AppPagination onChangeDataTable={setData} apiPath={modalFormConfig.branch.apiPath} />
-    </>
-  );
+  const data: IProps[] = [
+    {
+      id: '1',
+      name: 'Long',
+      phone: '123456789',
+      email: 'nghlong011@gmail.com',
+      content: 'khiếu nại1',
+    },
+    {
+      id: '2',
+      name: 'Minh',
+      phone: '123456789',
+      email: 'minh@gmail.com',
+      content: 'khiếu nại1',
+    },
+    {
+      id: '3',
+      name: 'Huy',
+      phone: '123456789',
+      email: 'huy@gmail.com',
+      content: 'khiếu nại1',
+    },
+    {
+      id: '4',
+      name: 'Tung',
+      phone: '123456789',
+      email: 'tung@gmail.com',
+      content: 'khiếu nại1',
+    },
+  ];
+  return <Table columns={columns} dataSource={data} pagination={false} />;
 };
 
 export default ReportMangament;

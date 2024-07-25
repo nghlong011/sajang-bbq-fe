@@ -17,6 +17,9 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
   const [form] = useForm();
   const [schedules, setSchedules] = useState<any>([]);
   const [dishes, setDishes] = useState<any>([]);
+  const [mainDishes, setMainDishes] = useState<any>([]);
+  const [main, setMain] = useState<any>([]);
+  const [sub, setSub] = useState<any>([]);
   const [params, setParams] = useState<DynamicKeyObject>({
     table: 1,
     date: moment().format('DD/MM/YYYY'),
@@ -34,9 +37,10 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
       message.error('Vui lòng bổ sung đầy đủ thông tin');
       return;
     }
-
+    const updatedate = { ...params, dishes: main.concat(sub) };
+    console.log(updatedate);
     loading.on();
-    processPostQuery('/booking', params).then((res: DynamicKeyObject) => {
+    processPostQuery('/booking', updatedate).then((res: DynamicKeyObject) => {
       setCreatedBooking(res.booking);
       message.success('Vui lòng thanh toán tiền đặt cọc (5$) để hoàn thiện quá trình đặt bàn');
       setIsShowPaypalButton(true);
@@ -49,18 +53,41 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
     form.resetFields();
   };
 
-  const handleChangeSelect = (value: any) => {
-    setParams((prev) => ({ ...prev, dishes: value }));
+  const handleChangeMainSelect = (value: any) => {
+    setMain(value);
+  };
+  const handleChangeSubSelect = (value: any) => {
+    setSub(value);
+  };
+
+  const calculateTotalPrice = () => {
+    const selectedMainDishes = mainDishes.filter((dish: DynamicKeyObject) => main.includes(dish.value));
+    const selectedSubDishes = dishes.filter((dish: DynamicKeyObject) => sub.includes(dish.value));
+    const totalPrice = selectedMainDishes
+      .concat(selectedSubDishes)
+      .reduce((acc: number, dish: DynamicKeyObject) => acc + dish.price, 0);
+    return totalPrice;
   };
 
   useEffect(() => {
     processGetQuery('/schedule').then((data) => setSchedules(data.schedules));
     processGetQuery('/dish').then((data) => {
-      const nextDishes = data.dishes.map((dish: DynamicKeyObject) => ({
-        value: dish.id,
-        label: dish.name,
-      }));
+      const nextDishes = data.dishes
+        .filter((dish: DynamicKeyObject) => dish.role == '2')
+        .map((dish: DynamicKeyObject) => ({
+          value: dish.id,
+          label: dish.name + ' Giá: ' + dish.price + ' đ ',
+          price: dish.price,
+        }));
+      const mainDishes = data.dishes
+        .filter((dish: DynamicKeyObject) => dish.role == '1')
+        .map((dish: DynamicKeyObject) => ({
+          value: dish.id,
+          label: dish.name + ' Giá: ' + dish.price + ' đ ',
+          price: dish.price,
+        }));
       setDishes(nextDishes);
+      setMainDishes(mainDishes);
     });
   }, []);
 
@@ -167,6 +194,21 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
             </Form.Item>
           </Col>
           <Col span={24}>
+            <Form.Item label="Món ăn chính">
+              <Select
+                size="large"
+                mode="multiple"
+                placeholder="Chọn ăn đặt kèm"
+                style={{ flex: 1 }}
+                options={mainDishes}
+                onChange={handleChangeMainSelect}
+                showSearch={false}
+                allowClear
+                disabled={isShowPaypalButton}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
             <Form.Item label="Món ăn kèm">
               <Select
                 size="large"
@@ -174,12 +216,17 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
                 placeholder="Chọn ăn đặt kèm"
                 style={{ flex: 1 }}
                 options={dishes}
-                onChange={handleChangeSelect}
+                onChange={handleChangeSubSelect}
                 showSearch={false}
                 allowClear
                 disabled={isShowPaypalButton}
               />
             </Form.Item>
+          </Col>
+          <Col span={24}>
+            <p className="mt-2 font-bold text-base">
+              Tổng số tiền: {calculateTotalPrice().toLocaleString('vi-VN')} VNĐ
+            </p>
           </Col>
         </Row>
       </Form>

@@ -11,7 +11,9 @@ interface IProps {
 
 function DetailBooking(props: Readonly<IProps>) {
   const { isOpen, row, handleCloseModal, handleSubmitForm } = props;
-  console.log('row', row);
+
+  // Tính tổng số tiền của đơn đặt bàn
+  const totalPrice = row.dishes?.reduce((acc: number, dish: DynamicKeyObject) => acc + (dish.dish?.price || 0), 0);
 
   return (
     <Modal
@@ -53,6 +55,7 @@ function DetailBooking(props: Readonly<IProps>) {
           Món ăn đặt kèm:{' '}
           {row.dishes.length ? row.dishes?.map((dish: DynamicKeyObject) => dish.dish?.name).join(', ') : 'Không'}
         </p>
+        <p className="mt-2 font-bold text-base">Tổng số tiền: {totalPrice.toLocaleString('vi-VN')} VNĐ</p>
       </div>
     </Modal>
   );

@@ -57,3 +57,26 @@ p {
     opacity: 0.5;
   }
 }
+.container-login100 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  background: #9053c7;
+  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  .wrap-login100 {
+    width: 960px;
+    background: #fff;
+    border-radius: 10px;
+  }
+  .login-button{
+    border-radius: 9999px;
+    background: #57b846;
+  }
+  .login-button:hover{
+    background: #333333 !important;
+  }
+}

@@ -17,7 +17,7 @@ function Auth() {
       {user?.role ? (
         <Navigate to={navigatedUrl} />
       ) : (
-        <div className="h-[100vh] flex justify-center items-center">
+        <div className="h-[100vh] flex justify-center items-center container-login100">
           {page === 'login' ? (
             <Login onSignup={() => setPage('signup')} />
           ) : (
