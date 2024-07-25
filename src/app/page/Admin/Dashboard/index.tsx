@@ -12,6 +12,10 @@ interface Booking {
     id: number;
     name: string;
   };
+  date: string;
+  schedule: {
+    time: string;
+  };
 }
 
 interface Dish {
@@ -27,7 +31,7 @@ interface Dish {
 function Dashboard() {
   const [topDishes, setTopDishes] = useState<Dish[]>([]);
   const [branchBookings, setBranchBookings] = useState<{ [key: string]: number }>({});
-
+  const [fullBookingData, setFullBookingData] = useState<Booking[]>([]);
   useEffect(() => {
     processGetQuery('/dish').then((data) => {
       const nextDishes: Dish[] = data.dishes;
@@ -47,7 +51,7 @@ function Dashboard() {
           branchBookingCount[branchName] = 1;
         }
       });
-
+      setFullBookingData(bookings);
       setBranchBookings(branchBookingCount);
     });
   }, []);
@@ -61,11 +65,11 @@ function Dashboard() {
         </Col>
         <Col span={10}>
           <div className="w-[300px] mx-auto">
-            <DonutChart />
+            <DonutChart bookingData={fullBookingData} />
           </div>
         </Col>
         <Col span={14}>
-          <LineChart />
+          <LineChart bookingData={fullBookingData} />
         </Col>
         <Col span={10}>
           <div className="w-[400px] mx-auto">
